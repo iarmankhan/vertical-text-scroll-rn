@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
+import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Dimensions, SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+
+const {width} = Dimensions.get('window')
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <SafeAreaView style={styles.container}>
+
+            <View style={styles.scrollView}>
+                {/*<View style={styles.container}>*/}
+                {
+                    Array(20).fill("Hello").map((txt, idx) => (
+                        <View style={{paddingHorizontal: 20}} key={idx}>
+                            <Text>{txt}</Text>
+                        </View>
+                    ))
+                }
+                {/*</View>*/}
+            </View>
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        // flexDirection: 'row',
+        // ,
+        position: 'relative'
+    },
+    scrollView: {
+        flexDirection: 'row',
+        // backgroundColor: 'red',
+        transform: [{rotate: '90deg'}, {translateX: 0}, {translateY: width / 2 - 30}],
+        // position: 'absolute',
+        // top: 0,
+    }
 });
